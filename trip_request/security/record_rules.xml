@@ -1,0 +1,23 @@
+<odoo>
+    <record id="trip_user_can_read_write_own_only" model="ir.rule">
+        <field name="name">Trip user can read/write own only</field>
+        <field name="model_id" ref="model_trip_request"/>
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_trip_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="trip_manager_can_read_write_all" model="ir.rule">
+        <field name="name">Trip manager can read/write all</field>
+        <field name="model_id" ref="model_trip_request"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('group_trip_manager'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+</odoo>

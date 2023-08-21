@@ -1,0 +1,40 @@
+<odoo>
+    <template id="report_trip_request">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="d">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <p>Employee:
+                            <span t-field="d.employee_id.name"/>
+                        </p>
+                        <p>Destination:
+                            <span t-field="d.destination_id.name"/>
+                        </p>
+                        <p>Start Date:
+                            <span t-field="d.start_date"/>
+                        </p>
+                        <p>End Date:
+                            <span t-field="d.end_date"/>
+                        </p>
+                        <p>Trip Days:
+                            <span t-field="d.trip_days"/>
+                        </p>
+                        <p>Rest Days:
+                            <span t-field="d.rest_days"/>
+                        </p>
+                        <p>Status:
+                            <span t-field="d.status"/>
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <report
+            id="trip_request_report_action"
+            string="Trip Request"
+            model="trip.request"
+            name="trip_request.report_trip_request"
+    />
+</odoo>
