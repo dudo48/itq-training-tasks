@@ -4,27 +4,27 @@
             <t t-foreach="docs" t-as="d">
                 <t t-call="web.external_layout">
                     <div class="page">
-                        <p>Employee:
+                        <div>Employee:
                             <span t-field="d.employee_id.name"/>
-                        </p>
-                        <p>Destination:
+                        </div>
+                        <div>Destination:
                             <span t-field="d.destination_id.name"/>
-                        </p>
-                        <p>Start Date:
+                        </div>
+                        <div>Start Date:
                             <span t-field="d.start_date"/>
-                        </p>
-                        <p>End Date:
+                        </div>
+                        <div>End Date:
                             <span t-field="d.end_date"/>
-                        </p>
-                        <p>Trip Days:
+                        </div>
+                        <div>Trip Days:
                             <span t-field="d.trip_days"/>
-                        </p>
-                        <p>Rest Days:
+                        </div>
+                        <div>Rest Days:
                             <span t-field="d.rest_days"/>
-                        </p>
-                        <p>Status:
+                        </div>
+                        <div>Status:
                             <span t-field="d.status"/>
-                        </p>
+                        </div>
                     </div>
                 </t>
             </t>
