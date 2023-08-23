@@ -22,6 +22,7 @@ class Employee(models.Model):
         default='draft'
     )
     last_changed_state_by_id = fields.Many2one('res.users', readonly=True)
+    allowed_destination_ids = fields.Many2many(related='employee_id.allowed_destination_ids')
 
     def write(self, vals):
         if 'state' in vals:
@@ -36,13 +37,13 @@ class Employee(models.Model):
             else:
                 record.trip_days = 0
 
-    @api.onchange('employee_id')
-    def _get_destination_domain(self):
-        return {
-            'domain': {
-                'destination_id': [('id', 'in', self.employee_id.allowed_destination_ids.mapped('id'))]
-            }
-        }
+    # @api.onchange('employee_id')
+    # def _get_destination_domain(self):
+    #     return {
+    #         'domain': {
+    #             'destination_id': [('id', 'in', self.employee_id.allowed_destination_ids.mapped('id'))]
+    #         }
+    #     }
 
     @api.onchange('start_date')
     def _empty_end_date(self):
