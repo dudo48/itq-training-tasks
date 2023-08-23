@@ -1,32 +1,49 @@
 <odoo>
     <template id="report_trip_request">
         <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="d">
-                <t t-call="web.external_layout">
-                    <div class="page">
-                        <div>Employee:
-                            <span t-field="d.employee_id.name"/>
-                        </div>
-                        <div>Destination:
-                            <span t-field="d.destination_id.name"/>
-                        </div>
-                        <div>Start Date:
-                            <span t-field="d.start_date"/>
-                        </div>
-                        <div>End Date:
-                            <span t-field="d.end_date"/>
-                        </div>
-                        <div>Trip Days:
-                            <span t-field="d.trip_days"/>
-                        </div>
-                        <div>Rest Days:
-                            <span t-field="d.rest_days"/>
-                        </div>
-                        <div>Status:
-                            <span t-field="d.state"/>
-                        </div>
-                    </div>
-                </t>
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Employee</th>
+                                <th>Destination</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Trip Days</th>
+                                <th>Rest Days</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="d">
+                                <tr>
+                                    <td>
+                                        <span t-field="d.employee_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="d.destination_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="d.start_date"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="d.end_date"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="d.trip_days"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="d.rest_days"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="d.state"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
             </t>
         </t>
     </template>
