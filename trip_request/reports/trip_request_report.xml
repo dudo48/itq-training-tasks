@@ -31,10 +31,10 @@
         </t>
     </template>
 
-    <report
-            id="trip_request_report_action"
-            string="Trip Request"
-            model="trip.request"
-            name="trip_request.report_trip_request"
-    />
+    <record model="ir.actions.report" id="trip_request_report_action">
+        <field name="name">Trip Request</field>
+        <field name="model">trip.request</field>
+        <field name="report_name">trip_request.report_trip_request</field>
+        <field name="binding_model_id" ref="model_trip_request"/>
+    </record>
 </odoo>
