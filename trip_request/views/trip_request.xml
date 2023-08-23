@@ -19,7 +19,7 @@
                             <field name="trip_days"/>
                             <field name="rest_days"/>
                         </group>
-                        <field name="last_changed_status_by_id" invisible="1"/>
+                        <field name="last_changed_status_by_id"/>
                     </group>
                 </sheet>
             </form>

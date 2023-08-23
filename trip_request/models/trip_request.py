@@ -9,7 +9,7 @@ class Employee(models.Model):
     destination_id = fields.Many2one('res.country', required=True)
     start_date = fields.Date(required=True)
     end_date = fields.Date(required=True)
-    trip_days = fields.Integer(compute='_compute_trip_days')
+    trip_days = fields.Integer(compute='_compute_trip_days', store=True)
     rest_days = fields.Integer(required=True)
     status = fields.Selection(
         [
@@ -20,13 +20,13 @@ class Employee(models.Model):
         ],
         required=True
     )
-    last_changed_status_by_id = fields.Many2one('res.users')
+    last_changed_status_by_id = fields.Many2one('res.users', compute='_compute_last_changed_status_by_id')
 
-    @api.depends('start_date', 'end_date')
+    @api.depends('start_date', 'end_date', 'rest_days')
     def _compute_trip_days(self):
         for record in self:
             if record.start_date and record.end_date:
-                record.trip_days = (record.end_date - record.start_date).days + 1
+                record.trip_days = (record.end_date - record.start_date).days - record.rest_days + 1
             else:
                 record.trip_days = 0
 
@@ -38,9 +38,10 @@ class Employee(models.Model):
             }
         }
 
-    @api.onchange('status')
-    def _onchange_status(self):
-        self.last_changed_status_by_id = self.env.user
+    @api.depends('status')
+    def _compute_last_changed_status_by_id(self):
+        for record in self:
+            record.last_changed_status_by_id = record.write_uid
 
     @api.onchange('start_date')
     def _empty_end_date(self):
@@ -58,3 +59,5 @@ class Employee(models.Model):
         for record in self:
             if record.rest_days < 0:
                 raise ValidationError("Rest days cannot be less than 0")
+            if record.rest_days > (record.end_date - record.start_date).days + 1:
+                raise ValidationError("Rest days cannot be greater than total trip request days")
