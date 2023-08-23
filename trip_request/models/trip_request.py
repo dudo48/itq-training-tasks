@@ -2,7 +2,7 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 
-class Employee(models.Model):
+class TripRequest(models.Model):
     _name = 'trip.request'
 
     employee_id = fields.Many2one('hr.employee', required=True, domain=[('contract_id.state', '=', 'open')])
@@ -27,7 +27,7 @@ class Employee(models.Model):
     def write(self, vals):
         if 'state' in vals:
             vals['last_changed_state_by_id'] = self.env.user
-        return super(Employee, self).write(vals)
+        return super(TripRequest, self).write(vals)
 
     @api.depends('start_date', 'end_date', 'rest_days')
     def _compute_trip_days(self):
