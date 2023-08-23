@@ -5,7 +5,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <field name="status" widget="statusbar" options="{'clickable': '1'}"/>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
                 </header>
                 <sheet>
                     <group col="1">
@@ -19,7 +19,9 @@
                             <field name="trip_days"/>
                             <field name="rest_days"/>
                         </group>
-                        <field name="last_changed_status_by_id"/>
+                        <group>
+                            <field name="last_changed_state_by_id"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
@@ -37,8 +39,8 @@
                 <field name="end_date"/>
                 <field name="trip_days"/>
                 <field name="rest_days"/>
-                <field name="status"/>
-                <field name="last_changed_status_by_id"/>
+                <field name="state"/>
+                <field name="last_changed_state_by_id"/>
             </tree>
         </field>
     </record>

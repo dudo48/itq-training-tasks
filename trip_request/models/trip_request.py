@@ -11,16 +11,22 @@ class Employee(models.Model):
     end_date = fields.Date(required=True)
     trip_days = fields.Integer(compute='_compute_trip_days', store=True)
     rest_days = fields.Integer(required=True)
-    status = fields.Selection(
+    state = fields.Selection(
         [
             ('draft', "Draft"),
             ('confirmed', "Confirmed"),
             ('ended', "Ended"),
             ('cancelled', "Cancelled")
         ],
-        required=True
+        required=True,
+        default='draft'
     )
-    last_changed_status_by_id = fields.Many2one('res.users', compute='_compute_last_changed_status_by_id')
+    last_changed_state_by_id = fields.Many2one('res.users', readonly=True)
+
+    def write(self, vals):
+        if 'state' in vals:
+            vals['last_changed_state_by_id'] = self.env.user
+        return super(Employee, self).write(vals)
 
     @api.depends('start_date', 'end_date', 'rest_days')
     def _compute_trip_days(self):
@@ -37,11 +43,6 @@ class Employee(models.Model):
                 'destination_id': [('id', 'in', self.employee_id.allowed_destination_ids.mapped('id'))]
             }
         }
-
-    @api.depends('status')
-    def _compute_last_changed_status_by_id(self):
-        for record in self:
-            record.last_changed_status_by_id = record.write_uid
 
     @api.onchange('start_date')
     def _empty_end_date(self):

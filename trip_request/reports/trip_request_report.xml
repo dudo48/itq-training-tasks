@@ -23,7 +23,7 @@
                             <span t-field="d.rest_days"/>
                         </div>
                         <div>Status:
-                            <span t-field="d.status"/>
+                            <span t-field="d.state"/>
                         </div>
                     </div>
                 </t>
