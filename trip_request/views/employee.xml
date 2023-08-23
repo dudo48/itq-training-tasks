@@ -6,8 +6,8 @@
         <field name="arch" type="xml">
             <xpath expr="//div[@id='o_work_employee_main']" position="inside">
                 <group string="Trip Requests">
-                    <field name="allowed_destination_ids"/>
-                    <field name="trip_request_id">
+                    <field name="allowed_destinations_ids"/>
+                    <field name="trip_request_ids">
                         <tree>
                             <field name="destination_id"/>
                             <field name="start_date"/>

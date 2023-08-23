@@ -22,7 +22,7 @@ class Employee(models.Model):
         default='draft'
     )
     last_changed_state_by_id = fields.Many2one('res.users', readonly=True)
-    allowed_destination_ids = fields.Many2many(related='employee_id.allowed_destination_ids')
+    allowed_destinations_ids = fields.Many2many(related='employee_id.allowed_destinations_ids')
 
     def write(self, vals):
         if 'state' in vals:
@@ -36,14 +36,6 @@ class Employee(models.Model):
                 record.trip_days = (record.end_date - record.start_date).days - record.rest_days + 1
             else:
                 record.trip_days = 0
-
-    # @api.onchange('employee_id')
-    # def _get_destination_domain(self):
-    #     return {
-    #         'domain': {
-    #             'destination_id': [('id', 'in', self.employee_id.allowed_destination_ids.mapped('id'))]
-    #         }
-    #     }
 
     @api.onchange('start_date')
     def _empty_end_date(self):
@@ -59,7 +51,7 @@ class Employee(models.Model):
     @api.constrains('destination_id')
     def _check_destination_id_constraint(self):
         for record in self:
-            if record.destination_id.id not in record.employee_id.allowed_destination_ids.mapped('id'):
+            if record.destination_id.id not in record.employee_id.allowed_destinations_ids.mapped('id'):
                 raise ValidationError("Destination can not be outside the allowed destinations list for the employee")
 
     @api.constrains('rest_days')

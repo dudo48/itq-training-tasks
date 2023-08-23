@@ -11,8 +11,8 @@
                     <group col="1">
                         <group>
                             <field name="employee_id"/>
-                            <field name="allowed_destination_ids" invisible="1"/>
-                            <field domain="[('id', 'in', allowed_destination_ids)]" name="destination_id"/>
+                            <field name="allowed_destinations_ids" invisible="1"/>
+                            <field domain="[('id', 'in', allowed_destinations_ids)]" name="destination_id"/>
                         </group>
                         <group col="4">
                             <field name="start_date"/>
