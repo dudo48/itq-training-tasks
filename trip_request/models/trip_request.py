@@ -55,6 +55,12 @@ class Employee(models.Model):
             if record.start_date > record.end_date:
                 raise ValidationError("Start date cannot be later than end date")
 
+    @api.constrains('destination_id')
+    def _check_destination_id_constraint(self):
+        for record in self:
+            if record.destination_id.id not in record.employee_id.allowed_destination_ids.mapped('id'):
+                raise ValidationError("Destination can not be outside the allowed destinations list for the employee")
+
     @api.constrains('rest_days')
     def _check_rest_days_constraint(self):
         for record in self:
