@@ -4,6 +4,9 @@
         <field name="model">trip.request</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <field name="status" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
                 <sheet>
                     <group col="1">
                         <group>
@@ -16,10 +19,7 @@
                             <field name="trip_days"/>
                             <field name="rest_days"/>
                         </group>
-                        <group>
-                            <field name="last_changed_status_by_id" invisible="1"/>
-                            <field name="status"/>
-                        </group>
+                        <field name="last_changed_status_by_id" invisible="1"/>
                     </group>
                 </sheet>
             </form>
