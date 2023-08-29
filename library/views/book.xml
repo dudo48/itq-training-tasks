@@ -1,0 +1,68 @@
+<odoo>
+    <record model="ir.ui.view" id="view_book_form">
+        <field name="name">book.form</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="borrow_book" class="oe_highlight" string="Borrow Book" type="object"
+                            attrs="{'invisible': [('is_borrowed', '=', True)]}"/>
+                    <button name="return_book" class="oe_highlight" string="Return Book" type="object"
+                            attrs="{'invisible': [('is_borrowed', '=', False)]}"/>
+                </header>
+                <sheet>
+                    <group col="2">
+                        <group>
+                            <field name="name"/>
+                            <field name="author_id"/>
+                            <field name="publication_date"/>
+                            <field name="isbn"/>
+                        </group>
+                        <group>
+                            <field name="is_borrowed" readonly="1"/>
+                            <field name="return_date" attrs="{'readonly': [('is_borrowed', '=', False)]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_book_filter" model="ir.ui.view">
+        <field name="name">book.filter</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter string="Borrowed Books" name="borrowed_books" domain="[('is_borrowed', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_book_tree">
+        <field name="name">book.tree</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="author_id"/>
+                <field name="publication_date"/>
+                <field name="isbn"/>
+                <field name="is_borrowed"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="book_window_action">
+        <field name="name">Books</field>
+        <field name="res_model">book</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_book_tree"/>
+    </record>
+
+    <menuitem
+            id="book_menuitem"
+            name="Books"
+            action="book_window_action"
+            parent="library_menuitem"
+    />
+</odoo>

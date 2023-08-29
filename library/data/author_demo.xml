@@ -1,0 +1,9 @@
+<odoo>
+    <record id="author_fd" model="author">
+        <field name="name">Fyodor Dostoevsky</field>
+    </record>
+
+    <record id="author_ad" model="author">
+        <field name="name">Alexandre Dumas</field>
+    </record>
+</odoo>

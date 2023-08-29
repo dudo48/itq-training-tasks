@@ -1,0 +1,6 @@
+<odoo>
+    <menuitem
+            id="library_menuitem"
+            name="Library"
+    />
+</odoo>

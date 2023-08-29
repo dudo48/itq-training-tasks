@@ -1,0 +1,29 @@
+<odoo>
+    <record id="book_cnp" model="book">
+        <field name="name">Crime and Punishment</field>
+        <field name="isbn">9780143058144</field>
+        <field name="publication_date">1866-1-1</field>
+        <field name="author_id" ref="author_fd"/>
+        <field name="is_borrowed">0</field>
+        <field name="return_date" eval="False"/>
+    </record>
+
+    <record id="book_tbk" model="book">
+        <field name="name">The Brothers Karamazov</field>
+        <field name="isbn">9780521155311</field>
+        <field name="publication_date">1880-1-1</field>
+        <field name="author_id" ref="author_fd"/>
+        <field name="is_borrowed">0</field>
+        <field name="return_date" eval="False"/>
+    </record>
+
+
+    <record id="book_tcomc" model="book">
+        <field name="name">The Count of Monte Cristo</field>
+        <field name="isbn">9781415912218</field>
+        <field name="publication_date">1844-1-1</field>
+        <field name="author_id" ref="author_ad"/>
+        <field name="is_borrowed">0</field>
+        <field name="return_date" eval="False"/>
+    </record>
+</odoo>
