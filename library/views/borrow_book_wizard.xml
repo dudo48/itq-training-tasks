@@ -1,0 +1,34 @@
+<odoo>
+    <record model="ir.ui.view" id="view_borrow_form">
+        <field name="name">borrow.form</field>
+        <field name="model">book.borrow.wizard</field>
+        <field name="arch" type="xml">
+            <form edit="0">
+                <sheet>
+                    <group>
+                        <field name="action" widget="radio" options="{'horizontal': 1}"/>
+                        <field name="show_is_borrowed" invisible="1"/>
+                        <field name="book_id" domain="[('is_borrowed', '=', show_is_borrowed)]"/>
+                        <field name="return_date"
+                               attrs="{'required': [('action', '=', 'borrow')], 'invisible': [('action', '=', 'return')]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="borrow_window_action">
+        <field name="name">Borrow a Book</field>
+        <field name="res_model">book.borrow.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_borrow_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+            id="borrow_menuitem"
+            name="Borrow/Return a Book"
+            action="borrow_window_action"
+            parent="book_menuitem_root"
+    />
+</odoo>

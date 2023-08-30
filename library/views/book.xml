@@ -4,23 +4,17 @@
         <field name="model">book</field>
         <field name="arch" type="xml">
             <form>
-                <header>
-                    <button name="borrow_book" class="oe_highlight" string="Borrow Book" type="object"
-                            attrs="{'invisible': [('is_borrowed', '=', True)]}"/>
-                    <button name="return_book" class="oe_highlight" string="Return Book" type="object"
-                            attrs="{'invisible': [('is_borrowed', '=', False)]}"/>
-                </header>
                 <sheet>
                     <group col="2">
                         <group>
                             <field name="name"/>
                             <field name="author_id"/>
-                            <field name="publication_date"/>
                             <field name="isbn"/>
+                            <field name="publication_date"/>
                         </group>
                         <group>
-                            <field name="is_borrowed" readonly="1"/>
-                            <field name="return_date" attrs="{'readonly': [('is_borrowed', '=', False)]}"/>
+                            <field name="is_borrowed"/>
+                            <field name="return_date"/>
                         </group>
                     </group>
                 </sheet>
@@ -48,6 +42,7 @@
                 <field name="publication_date"/>
                 <field name="isbn"/>
                 <field name="is_borrowed"/>
+                <field name="return_date"/>
             </tree>
         </field>
     </record>
@@ -60,9 +55,16 @@
     </record>
 
     <menuitem
+            id="book_menuitem_root"
+            name="Books"
+            parent="library_menuitem"
+            sequence="0"
+    />
+
+    <menuitem
             id="book_menuitem"
             name="Books"
             action="book_window_action"
-            parent="library_menuitem"
+            parent="book_menuitem_root"
     />
 </odoo>

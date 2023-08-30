@@ -33,6 +33,7 @@
         'views/library.xml',
         'views/book.xml',
         'views/author.xml',
+        'views/borrow_book_wizard.xml',
 
         # Menu items files:
 

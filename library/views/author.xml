@@ -43,5 +43,6 @@
             name="Authors"
             action="author_window_action"
             parent="library_menuitem"
+            sequence="1"
     />
 </odoo>
