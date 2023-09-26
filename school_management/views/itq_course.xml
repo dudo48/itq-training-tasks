@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="itq_course_view_form" model="ir.ui.view">
+        <field name="name">itq.course.view.form</field>
+        <field name="model">itq.course</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="capacity" />
+                        <field name="instructor_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="itq_course_view_tree" model="ir.ui.view">
+        <field name="name">itq.course.view.tree</field>
+        <field name="model">itq.course</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" />
+                <field name="capacity" />
+                <field name="instructor_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="itq_course_action" model="ir.actions.act_window">
+        <field name="name">Courses</field>
+        <field name="res_model">itq.course</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="itq_course_menu"
+        name="Courses"
+        action="itq_course_action"
+        parent="school_management_menu"
+        sequence="10" />
+</odoo>

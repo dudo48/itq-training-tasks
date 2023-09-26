@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_itq_student_all,itq_student.all,model_itq_student,,1,1,1,1
+access_itq_course_all,itq.course.all,model_itq_course,,1,1,1,1
+access_itq_instructor_all,itq_instructor.all,model_itq_instructor,,1,1,1,1
+access_itq_skill_all,itq.skill.all,model_itq_skill,,1,1,1,1
